@@ -27,7 +27,7 @@ pip install pyTelegramBotAPI python-dotenv
 3. Создайте файл .env и добавте токен:
 ```bash
 BOT_TOKEN=ВАШ_ТОКЕН
-``'
+```
 4. Измените в коде значения:
 ```bash
 chat_id - на ID вашего чата
