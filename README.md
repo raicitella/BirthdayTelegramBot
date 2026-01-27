@@ -18,8 +18,8 @@
 1. Клонируйте репозиторий:
 ```bash
 git clone https://github.com/yourusername/birthday-bot.git
-cd birthday-bot
 ```
+cd birthday-bot
 2. Установите зависимости:
 ```bash
 pip install pyTelegramBotAPI python-dotenv
@@ -27,12 +27,23 @@ pip install pyTelegramBotAPI python-dotenv
 3. Создайте файл .env и добавте токен:
 ```bash
 BOT_TOKEN=ВАШ_ТОКЕН
+``'
+4. Измените в коде значения:
+```bash
+chat_id - на ID вашего чата
+THREAD_ID - на ID ветки, куда бот отправляет сообщения (если используете темы)
 ```
-4. Запустите бота:
+ЕСЛИ ТЕМЫ В ЧАТЕ НЕ ИСПОЛЬЗУЮТСЯ ТО УБЕРИТЕ В СТРОКАХ:
+```python
+bot.send_message(
+            chat_id=chat_id,
+            text=f"🎉 Сегодня {birthdaysName[dr[q]]} отмечает свой день рождения!",  message_thread_id=THREAD_ID 
+        )
+```
+УБЕРИТЕ:
+```python 
+message_thread_id=THREAD_ID
+```
+5. Запустите бота:
 ```bash
 python main.py
-```
-Для автоматической проверки ДР не забудьте поменять в коде значение переменных
-```bash
-chat_ID = ID_Группы
-THREAD_ID = ID_темы #id темы в которую нужно отправлять сообщение 
