@@ -17,9 +17,9 @@
 
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/birthday-bot.git
-```
+git clone https://github.com/RaicitellaDeveloper/BirthdayTelegramBot.git
 cd birthday-bot
+```
 2. Установите зависимости:
 ```bash
 pip install pyTelegramBotAPI python-dotenv
