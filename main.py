@@ -7,14 +7,16 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from telebot import util
+from telebot import types
 
 load_dotenv()
 
 API_TOKEN=os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(API_TOKEN)
 
-chat_id = id_chat
-THREAD_ID = id_thread
+Group_chat_id = None
+THREAD_ID = None
 
 TZ=ZoneInfo("Europe/Moscow")
 
@@ -22,8 +24,7 @@ TZ=ZoneInfo("Europe/Moscow")
 def send_welcome(message):   
     chat_id = message.chat.id
     username= message.from_user.username
-    
-    Startbot = bot.reply_to(message, f"""\
+    bot.reply_to(message, f"""\
 Привет, @{username}! \
 """)
 
@@ -36,15 +37,47 @@ def send_time(message):
 @bot.message_handler(commands=['birthdays'])
 def send_welcome(message):   
     chat_id = message.chat.id
-    Startbot = bot.reply_to(message, """\
-Дни рождения
+    text1 = """
+#🎂 Дни рождения
 
-user1 5 апреля               
-user2 22 июня
-user3 13 май
-user4 1 января
-user5 13 май \
-""")
+##Январь
+
+Имя                     | Дата
+------------------------|----------------
+user4      | 1 января
+
+##Апрель
+
+Имя                     | Дата
+------------------------|----------------
+user1             | 5 апреля
+
+##Май
+
+Имя                     | Дата
+------------------------|----------------
+user3         | 13 мая
+user5         | 13 мая
+
+##Июнь
+
+Имя                     | Дата
+------------------------|----------------
+user2    | 22 июня   
+
+"""
+    if chat_id == Group_chat_id:
+        bot.send_rich_message(
+                    chat_id=message.chat.id,
+                    rich_message=types.InputRichMessage(markdown=text1),
+                    message_thread_id=message.message_thread_id
+            )
+    else:
+        bot.send_rich_message(
+                        chat_id=message.chat.id,
+                        rich_message=types.InputRichMessage(markdown=text1),
+                )
+
         
 @bot.message_handler(commands=['check'])
 def send_welcome(message):
@@ -87,9 +120,7 @@ date(2000, 6, 22):"user2",
 date(2000, 5, 13):"user3",
 date(2000, 1, 1):"user4",
 date(2001, 5, 13):"user5"
-
 }
-
 
 def happyBirthday():
     now = datetime.now(TZ)
