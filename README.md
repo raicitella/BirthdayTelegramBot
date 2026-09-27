@@ -17,7 +17,7 @@
 
 #### 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/RaicitellaDeveloper/BirthdayTelegramBot.git
+git clone https://github.com/raicitella/BirthdayTelegramBot.git
 cd BirthdayTelegramBot
 ```
 #### 2. Установите зависимости:
